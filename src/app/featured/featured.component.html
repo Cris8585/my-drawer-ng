@@ -1,0 +1,54 @@
+<ActionBar backgroundColor="green">
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label text="Featured"></Label>
+</ActionBar>
+
+<GridLayout class="page__content">
+    <Label class="page__content-icon fas" text="&#xf005;"></Label>
+
+    <!--ListView class="list-group" [items]="this.resultadosNoticias" (itemTap)="onItemTap($event)" style="height: 1250px">
+        <ng-template let-x="item">
+            <FlexboxLayout flexDirection="row" class="list-group-item">
+                <Image src="res://icon" class="thumb img-circle"></Image>
+                <Label [text]="x.titulo" class="list-group-item-heading" verticalAlignment="center" style="width: 30%"></Label>
+                <Label [text]="x.categoria" class="list-group-item-heading" verticalAlignment="center" style="width: 20%"></Label>
+                <Label class="far" text="&#xf005;" style="width: 10%; color: #ffcc00;" verticalAlignment="center" (tap)="onTap($event, x)" *ngIf="!x.favorita"></Label>
+                <Label class="fas" text="&#xf005;" style="width: 10%; color: #ffcc00;" verticalAlignment="center" (tap)="onTap($event, x)" *ngIf="x.favorita"></Label>
+            </FlexboxLayout>
+        </ng-template>
+    </ListView-->
+
+    <ListView class="list-group" [items]="this.misFavoritas" style="height: 1250px;" *ngIf="this.hayFavoritas">
+        <ng-template let-x="item">
+            <FlexboxLayout flexDirection="row" class="list-group-item">
+                <Image src="res://icon" class="thumb img-circle"></Image>
+                <Label [text]="x.titulo" class="list-group-item-heading" verticalAlignment="center" style="width: 20%"></Label>
+                <Label [text]="x.categoria" class="list-group-item-heading" verticalAlignment="center" style="width: 20%"></Label>
+                <Label class="far" text="&#xf005;" style="width: 10%; color: #ffcc00;" verticalAlignment="center" (tap)="onTap($event, x)" *ngIf="!x.favorita"></Label>
+                <Label class="fas" text="&#xf005;" style="width: 10%; color: #ffcc00;" verticalAlignment="center" (tap)="onTap($event, x)" *ngIf="x.favorita"></Label>
+                <Label class="fas" text="&#xf02d;" style="width: 10%; color: gray;" verticalAlignment="center" (tap)="onRead($event, x)" *ngIf="!x.leyendo"></Label>
+                <Label class="fas" text="&#xf518;" style="width: 10%; color: #ffcc00;" verticalAlignment="center" (tap)="onRead($event, x)" *ngIf="x.leyendo"></Label>
+            </FlexboxLayout>
+        </ng-template>
+    </ListView>
+
+    <Label class="h3 text-center" text="Sin favoritas por el momento" *ngIf="!this.hayFavoritas" ></Label>
+
+    <!--GridLayout class="bg-primary p-15 m-15" width="200" height="200" (longPress)="onLongPress($event)">
+        <Image class="img-rounded" src="res://icon" stretch="none"></Image>
+    </GridLayout-->
+
+
+</GridLayout>

@@ -1,0 +1,31 @@
+<ActionBar backgroundColor="green">
+    <!--
+    Use the NavigationButton as a side-drawer button in Android
+    because ActionItems are shown on the right side of the ActionBar
+    -->
+    <NavigationButton ios:visibility="collapsed" icon="res://menu" (tap)="onDrawerButtonTap()"></NavigationButton>
+    <!--
+    Use the ActionItem for IOS with position set to left. Using the
+    NavigationButton as a side-drawer button in iOS is not possible,
+    because its function is to always navigate back in the application.
+    -->
+    <ActionItem icon="res://menu" android:visibility="collapsed" (tap)="onDrawerButtonTap()"
+        ios.position="left">
+    </ActionItem>
+    <Label text="Settings"></Label>
+</ActionBar>
+
+<StackLayout class="page__content">
+    <!-- Label class="page__content-icon fas" text="&#xf013;"></Label -->
+    <Label class="h1 text-center" text="Editar datos de usuario"></Label>
+    <Button (tap)="onButtonUsuario()" style="height: 48;">
+        <FormattedString>
+            <Span text="Nombre de usuario" style="font-size: 24px;"></Span>
+        </FormattedString>
+    </Button>
+    <Button (tap)="onButtonCorreo()" style="height: 48;">
+        <FormattedString>
+            <Span text="Email de usuario" style="font-size: 24px;"></Span>
+        </FormattedString>
+    </Button>
+</StackLayout>
